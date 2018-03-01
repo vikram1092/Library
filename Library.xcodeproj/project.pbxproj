@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		D172A21020478BE700E85DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D172A20F20478BE700E85DD9 /* AppDelegate.swift */; };
-		D172A21220478BE700E85DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D172A21120478BE700E85DD9 /* ViewController.swift */; };
+		D172A21220478BE700E85DD9 /* BookTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D172A21120478BE700E85DD9 /* BookTableController.swift */; };
 		D172A21520478BE700E85DD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D172A21320478BE700E85DD9 /* Main.storyboard */; };
 		D172A21720478BE700E85DD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D172A21620478BE700E85DD9 /* Assets.xcassets */; };
 		D172A21A20478BE700E85DD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D172A21820478BE700E85DD9 /* LaunchScreen.storyboard */; };
+		D172A22220479AFD00E85DD9 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D172A22120479AFD00E85DD9 /* BookCell.swift */; };
+		D172A22420479B5600E85DD9 /* LibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D172A22320479B5600E85DD9 /* LibraryManager.swift */; };
+		D172A22620479B8300E85DD9 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = D172A22520479B8300E85DD9 /* Book.swift */; };
+		D172A2282047A42000E85DD9 /* BookDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D172A2272047A42000E85DD9 /* BookDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D172A20C20478BE700E85DD9 /* Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Library.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D172A20F20478BE700E85DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D172A21120478BE700E85DD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D172A21120478BE700E85DD9 /* BookTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableController.swift; sourceTree = "<group>"; };
 		D172A21420478BE700E85DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D172A21620478BE700E85DD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D172A21920478BE700E85DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D172A21B20478BE700E85DD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D172A22120479AFD00E85DD9 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		D172A22320479B5600E85DD9 /* LibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManager.swift; sourceTree = "<group>"; };
+		D172A22520479B8300E85DD9 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		D172A2272047A42000E85DD9 /* BookDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +63,15 @@
 			isa = PBXGroup;
 			children = (
 				D172A20F20478BE700E85DD9 /* AppDelegate.swift */,
-				D172A21120478BE700E85DD9 /* ViewController.swift */,
+				D172A21120478BE700E85DD9 /* BookTableController.swift */,
+				D172A22120479AFD00E85DD9 /* BookCell.swift */,
 				D172A21320478BE700E85DD9 /* Main.storyboard */,
+				D172A22320479B5600E85DD9 /* LibraryManager.swift */,
 				D172A21620478BE700E85DD9 /* Assets.xcassets */,
 				D172A21820478BE700E85DD9 /* LaunchScreen.storyboard */,
 				D172A21B20478BE700E85DD9 /* Info.plist */,
+				D172A22520479B8300E85DD9 /* Book.swift */,
+				D172A2272047A42000E85DD9 /* BookDetailController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -136,8 +148,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D172A21220478BE700E85DD9 /* ViewController.swift in Sources */,
+				D172A22220479AFD00E85DD9 /* BookCell.swift in Sources */,
+				D172A2282047A42000E85DD9 /* BookDetailController.swift in Sources */,
+				D172A21220478BE700E85DD9 /* BookTableController.swift in Sources */,
 				D172A21020478BE700E85DD9 /* AppDelegate.swift in Sources */,
+				D172A22620479B8300E85DD9 /* Book.swift in Sources */,
+				D172A22420479B5600E85DD9 /* LibraryManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,9 +291,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 53738Y87UZ;
 				INFOPLIST_FILE = Library/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vikram.tutorial.Library;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vikram.Library;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -289,9 +307,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 53738Y87UZ;
 				INFOPLIST_FILE = Library/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vikram.tutorial.Library;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vikram.Library;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
