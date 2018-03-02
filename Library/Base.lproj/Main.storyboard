@@ -259,20 +259,37 @@
                                     <constraint firstItem="Jl0-5Z-gEf" firstAttribute="top" secondItem="DeE-Fy-yrr" secondAttribute="top" constant="15" id="xy6-eU-JN7"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k32-5I-tFG">
+                                <rect key="frame" x="16" y="371" width="343" height="50"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.76862745099999996" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Qlu-Wa-4JO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Checkout">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCheckout:" destination="mo1-A1-eWj" eventType="touchUpInside" id="hkN-9d-CAk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="DeE-Fy-yrr" firstAttribute="top" secondItem="MXT-0G-90M" secondAttribute="bottom" constant="-8" id="3bR-Tg-12B"/>
                             <constraint firstItem="IKQ-MH-Q9h" firstAttribute="width" secondItem="MXT-0G-90M" secondAttribute="width" id="6vI-4D-7Cx"/>
+                            <constraint firstItem="5Au-79-SmV" firstAttribute="trailing" secondItem="k32-5I-tFG" secondAttribute="trailing" constant="16" id="8Ev-c2-FqH"/>
                             <constraint firstItem="iOV-zV-npP" firstAttribute="leading" secondItem="5Au-79-SmV" secondAttribute="leading" constant="16" id="IgX-ta-U0P"/>
                             <constraint firstItem="iOV-zV-npP" firstAttribute="top" secondItem="5Au-79-SmV" secondAttribute="top" constant="16" id="Lou-eX-9z8"/>
                             <constraint firstItem="5Au-79-SmV" firstAttribute="trailing" secondItem="MXT-0G-90M" secondAttribute="trailing" constant="16" id="MAj-mj-cob"/>
                             <constraint firstItem="DeE-Fy-yrr" firstAttribute="leading" secondItem="5Au-79-SmV" secondAttribute="leading" constant="16" id="Ns9-bq-ldN"/>
+                            <constraint firstItem="k32-5I-tFG" firstAttribute="top" secondItem="DeE-Fy-yrr" secondAttribute="bottom" constant="25" id="Qhj-9n-j66"/>
                             <constraint firstItem="IKQ-MH-Q9h" firstAttribute="height" secondItem="MXT-0G-90M" secondAttribute="height" id="R51-h1-BYq"/>
                             <constraint firstItem="5Au-79-SmV" firstAttribute="trailing" secondItem="DeE-Fy-yrr" secondAttribute="trailing" constant="16" id="c7h-JH-Ahy"/>
                             <constraint firstItem="MXT-0G-90M" firstAttribute="top" secondItem="iOV-zV-npP" secondAttribute="bottom" constant="8" id="dXU-YE-fW5"/>
                             <constraint firstItem="IKQ-MH-Q9h" firstAttribute="leading" secondItem="5Au-79-SmV" secondAttribute="leading" constant="16" id="iWG-9l-vMb"/>
                             <constraint firstItem="5Au-79-SmV" firstAttribute="trailing" secondItem="iOV-zV-npP" secondAttribute="trailing" constant="16" id="j69-TA-yuO"/>
+                            <constraint firstItem="k32-5I-tFG" firstAttribute="leading" secondItem="5Au-79-SmV" secondAttribute="leading" constant="16" id="j9M-J7-iRi"/>
                             <constraint firstItem="IKQ-MH-Q9h" firstAttribute="top" secondItem="iOV-zV-npP" secondAttribute="bottom" constant="-8" id="pXt-0u-O2L"/>
                             <constraint firstItem="MXT-0G-90M" firstAttribute="leading" secondItem="IKQ-MH-Q9h" secondAttribute="trailing" constant="8" id="v7v-6q-hez"/>
                         </constraints>
@@ -282,6 +299,18 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="A2H-FR-E6R"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="ywa-aZ-zUe"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="authorLabel" destination="cS9-1o-k5c" id="R7j-4O-Sl9"/>
+                        <outlet property="backView1" destination="iOV-zV-npP" id="bMq-nb-cMy"/>
+                        <outlet property="backView2" destination="IKQ-MH-Q9h" id="T2g-pB-Nfb"/>
+                        <outlet property="backView3" destination="MXT-0G-90M" id="5ud-PC-Lcb"/>
+                        <outlet property="backView4" destination="DeE-Fy-yrr" id="j67-Xb-p6u"/>
+                        <outlet property="checkoutButton" destination="k32-5I-tFG" id="B6F-j8-o7y"/>
+                        <outlet property="lastCONameLabel" destination="08p-EW-9jJ" id="v5i-K3-2kt"/>
+                        <outlet property="lastCOTimeLabel" destination="dLc-PB-3xe" id="OSn-DS-mNg"/>
+                        <outlet property="tagsLabel" destination="Jl0-5Z-gEf" id="0RK-Dd-LiN"/>
+                        <outlet property="titleLabel" destination="Dve-Ls-9qT" id="lM9-f1-kHP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4T-l7-i6G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
