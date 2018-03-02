@@ -10,15 +10,23 @@ import Foundation
 
 class Book: NSObject {
     
-    var id: Int?
-    var author: String?
-    var categories: String?
-    var lastCheckOut: NSDate?
-    var lastCheckOutBy: String?
-    var publisher: String?
-    var title: String?
+    static let ID_DICT_KEY = "id"
+    static let TITLE_DICT_KEY = "title"
+    static let AUTHOR_DICT_KEY = "author"
+    static let PUBLISHER_DICT_KEY = "publisher"
+    static let CATEGORIES_DICT_KEY = "categories"
+    static let LAST_CO_DICT_KEY = "lastCheckedOut"
+    static let LAST_CO_BY_DICT_KEY = "lastCheckedOutBy"
     
-    init(id: Int?, author: String, categories: String, lastCheckOut: NSDate?, lastCheckOutBy: String?, publisher: String, title: String) {
+    var id: Int?
+    var title: String?
+    var author: String?
+    var publisher: String?
+    var categories: String?
+    var lastCheckOut: Date?
+    var lastCheckOutBy: String?
+    
+    init(id: Int?, author: String, categories: String, lastCheckOut: Date?, lastCheckOutBy: String?, publisher: String, title: String) {
         self.id = id
         self.author = author
         self.lastCheckOut = lastCheckOut
@@ -36,4 +44,3 @@ class Book: NSObject {
         self.title = nil
     }
 }
-

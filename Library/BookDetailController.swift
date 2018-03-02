@@ -20,8 +20,11 @@ class BookDetailController: UIViewController {
     @IBOutlet weak var lastCONameLabel: UILabel!
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var publishersLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkoutButton: UIButton!
+    
+    var book: Book?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,23 @@ class BookDetailController: UIViewController {
         backView3.clipsToBounds = true
         backView4.layer.cornerRadius = cornerRadius
         backView4.clipsToBounds = true
+        checkoutButton.layer.cornerRadius = cornerRadius
+        checkoutButton.clipsToBounds = true
+        
+        guard let book = book else { return }
+        titleLabel.text = book.title ?? "Unknown"
+        authorLabel.text = book.author ?? "Unknown"
+        tagsLabel.text = book.categories ?? "Unknown"
+        lastCONameLabel.text = book.lastCheckOutBy ?? "-"
+        publishersLabel.text = book.publisher ?? "Unknown"
+        
+        if let checkoutTime = book.lastCheckOut {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .full
+            dateFormatter.timeStyle = .medium
+            let dateString = dateFormatter.string(from: checkoutTime)
+            lastCOTimeLabel.text = dateString
+        }
     }
     
     

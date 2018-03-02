@@ -18,6 +18,9 @@ class BookCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        paddingView.layer.cornerRadius = CGFloat(8)
+        paddingView.clipsToBounds = true
     }
     
     override func prepareForReuse() {
