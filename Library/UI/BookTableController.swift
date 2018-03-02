@@ -11,6 +11,7 @@ import UIKit
 class BookTableController: UITableViewController {
 
     static let TABLE_TO_DETAIL_SEGUE = "BookTableToBookDetailSegue"
+    static let TABLE_TO_ADD_BOOK_SEGUE = "BookTableToAddBookSegue"
     let dataManager = LibraryManager()
     var selectedBook: Book? = nil
     
@@ -34,6 +35,11 @@ class BookTableController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+    
+    @IBAction func onAddBook(_ sender: Any) {
+        performSegue(withIdentifier: BookTableController.TABLE_TO_ADD_BOOK_SEGUE, sender: nil)
+    }
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return dataManager.numberOfSections()

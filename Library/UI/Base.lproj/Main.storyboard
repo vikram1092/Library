@@ -32,7 +32,7 @@
             </objects>
             <point key="canvasLocation" x="-1189" y="192"/>
         </scene>
-        <!--Book Table Controller-->
+        <!--Books-->
         <scene sceneID="gtt-Ay-BV8">
             <objects>
                 <tableViewController id="lWf-GW-6rs" customClass="BookTableController" customModule="Library" customModuleProvider="target" sceneMemberID="viewController">
@@ -101,12 +101,17 @@
                             <outlet property="delegate" destination="lWf-GW-6rs" id="TQi-Hg-sAe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="hcN-8r-bPk">
+                    <navigationItem key="navigationItem" title="Books" id="hcN-8r-bPk">
                         <barButtonItem key="backBarButtonItem" title=" " id="LXf-fu-xdu"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Mwg-h0-BR3"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Mwg-h0-BR3">
+                            <connections>
+                                <action selector="onAddBook:" destination="lWf-GW-6rs" id="5W7-3M-2iT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="mo1-A1-eWj" kind="show" identifier="BookTableToBookDetailSegue" id="3Yp-j2-1kX"/>
+                        <segue destination="dp6-jX-g4d" kind="show" identifier="BookTableToAddBookSegue" id="OXG-da-uy7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u1m-Bj-Ckg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -315,22 +320,22 @@
             </objects>
             <point key="canvasLocation" x="501.60000000000002" y="189.3553223388306"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Book Controller-->
         <scene sceneID="AgU-Ub-12N">
             <objects>
-                <viewController id="dp6-jX-g4d" sceneMemberID="viewController">
+                <viewController id="dp6-jX-g4d" customClass="AddBookController" customModule="Library" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xvX-Kb-vaR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eyx-2x-L7R">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyx-2x-L7R">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYe-6P-Cd4" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="363"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3hO-6f-Lot">
-                                                <rect key="frame" x="8" y="33" width="359" height="30"/>
+                                                <rect key="frame" x="16" y="33" width="343" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="w24-pa-TKe"/>
                                                 </constraints>
@@ -338,7 +343,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vxs-Lz-tAx">
-                                                <rect key="frame" x="8" y="83" width="359" height="30"/>
+                                                <rect key="frame" x="16" y="83" width="343" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="s0E-Q8-wgN"/>
                                                 </constraints>
@@ -347,7 +352,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Publisher" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k4f-i1-uu3">
-                                                <rect key="frame" x="8" y="133" width="359" height="30"/>
+                                                <rect key="frame" x="16" y="133" width="343" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="vs2-1f-Bbr"/>
                                                 </constraints>
@@ -356,7 +361,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Categories" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YZ0-b7-T1r">
-                                                <rect key="frame" x="8" y="183" width="359" height="30"/>
+                                                <rect key="frame" x="16" y="183" width="343" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="ZLO-UV-oTk"/>
                                                 </constraints>
@@ -365,7 +370,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tHu-dL-8eU">
-                                                <rect key="frame" x="8" y="263" width="359" height="50"/>
+                                                <rect key="frame" x="16" y="263" width="343" height="50"/>
                                                 <color key="backgroundColor" red="0.99607843139999996" green="0.76862745099999996" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="ohq-Vc-J5E"/>
@@ -374,25 +379,28 @@
                                                 <state key="normal" title="Submit">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onSubmit:" destination="dp6-jX-g4d" eventType="touchUpInside" id="doF-NN-qFi"/>
+                                                </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="3hO-6f-Lot" firstAttribute="top" secondItem="SYe-6P-Cd4" secondAttribute="top" constant="33" id="3qE-7y-HAL"/>
-                                            <constraint firstAttribute="trailing" secondItem="3hO-6f-Lot" secondAttribute="trailing" constant="8" id="4bl-b9-BBI"/>
-                                            <constraint firstItem="tHu-dL-8eU" firstAttribute="leading" secondItem="SYe-6P-Cd4" secondAttribute="leading" constant="8" id="ACW-s0-ryi"/>
-                                            <constraint firstItem="k4f-i1-uu3" firstAttribute="leading" secondItem="SYe-6P-Cd4" secondAttribute="leading" constant="8" id="KCX-1J-wdh"/>
+                                            <constraint firstAttribute="trailing" secondItem="3hO-6f-Lot" secondAttribute="trailing" constant="16" id="4bl-b9-BBI"/>
+                                            <constraint firstItem="tHu-dL-8eU" firstAttribute="leading" secondItem="SYe-6P-Cd4" secondAttribute="leading" constant="16" id="ACW-s0-ryi"/>
+                                            <constraint firstItem="k4f-i1-uu3" firstAttribute="leading" secondItem="SYe-6P-Cd4" secondAttribute="leading" constant="16" id="KCX-1J-wdh"/>
                                             <constraint firstItem="YZ0-b7-T1r" firstAttribute="top" secondItem="k4f-i1-uu3" secondAttribute="bottom" constant="20" id="RBI-VJ-pzt"/>
-                                            <constraint firstAttribute="trailing" secondItem="k4f-i1-uu3" secondAttribute="trailing" constant="8" id="Xa2-V6-BM4"/>
+                                            <constraint firstAttribute="trailing" secondItem="k4f-i1-uu3" secondAttribute="trailing" constant="16" id="Xa2-V6-BM4"/>
                                             <constraint firstItem="vxs-Lz-tAx" firstAttribute="top" secondItem="3hO-6f-Lot" secondAttribute="bottom" constant="20" id="Z7H-KA-dhw"/>
-                                            <constraint firstAttribute="trailing" secondItem="YZ0-b7-T1r" secondAttribute="trailing" constant="8" id="ZSU-ww-MYM"/>
-                                            <constraint firstItem="3hO-6f-Lot" firstAttribute="leading" secondItem="SYe-6P-Cd4" secondAttribute="leading" constant="8" id="b0X-LX-HEJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="YZ0-b7-T1r" secondAttribute="trailing" constant="16" id="ZSU-ww-MYM"/>
+                                            <constraint firstItem="3hO-6f-Lot" firstAttribute="leading" secondItem="SYe-6P-Cd4" secondAttribute="leading" constant="16" id="b0X-LX-HEJ"/>
                                             <constraint firstItem="k4f-i1-uu3" firstAttribute="top" secondItem="vxs-Lz-tAx" secondAttribute="bottom" constant="20" id="ha6-TA-i1D"/>
                                             <constraint firstAttribute="bottom" secondItem="tHu-dL-8eU" secondAttribute="bottom" constant="50" id="imV-ig-8D6"/>
-                                            <constraint firstItem="vxs-Lz-tAx" firstAttribute="leading" secondItem="SYe-6P-Cd4" secondAttribute="leading" constant="8" id="kdi-6B-b0f"/>
-                                            <constraint firstAttribute="trailing" secondItem="tHu-dL-8eU" secondAttribute="trailing" constant="8" id="nJL-pl-wBF"/>
-                                            <constraint firstAttribute="trailing" secondItem="vxs-Lz-tAx" secondAttribute="trailing" constant="8" id="uDd-yx-z3L"/>
-                                            <constraint firstItem="YZ0-b7-T1r" firstAttribute="leading" secondItem="SYe-6P-Cd4" secondAttribute="leading" constant="8" id="uTg-pY-3fH"/>
+                                            <constraint firstItem="vxs-Lz-tAx" firstAttribute="leading" secondItem="SYe-6P-Cd4" secondAttribute="leading" constant="16" id="kdi-6B-b0f"/>
+                                            <constraint firstAttribute="trailing" secondItem="tHu-dL-8eU" secondAttribute="trailing" constant="16" id="nJL-pl-wBF"/>
+                                            <constraint firstAttribute="trailing" secondItem="vxs-Lz-tAx" secondAttribute="trailing" constant="16" id="uDd-yx-z3L"/>
+                                            <constraint firstItem="YZ0-b7-T1r" firstAttribute="leading" secondItem="SYe-6P-Cd4" secondAttribute="leading" constant="16" id="uTg-pY-3fH"/>
                                             <constraint firstItem="tHu-dL-8eU" firstAttribute="top" secondItem="YZ0-b7-T1r" secondAttribute="bottom" constant="50" id="xqh-YT-V9w"/>
                                         </constraints>
                                     </view>
@@ -413,12 +421,13 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Add Book" id="5sj-QF-cmT">
+                                        <barButtonItem key="backBarButtonItem" title=" " id="S7Z-Dm-at3"/>
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="op5-gF-m4w"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="SYe-6P-Cd4" firstAttribute="width" secondItem="xvX-Kb-vaR" secondAttribute="width" id="6cO-Ly-LBb"/>
                             <constraint firstItem="5c6-BO-TiT" firstAttribute="top" secondItem="xvX-Kb-vaR" secondAttribute="top" id="D6d-up-3Mc"/>
@@ -431,10 +440,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EhT-al-uhR"/>
                     </view>
+                    <connections>
+                        <outlet property="authorField" destination="vxs-Lz-tAx" id="kWW-GO-LZc"/>
+                        <outlet property="categoriesField" destination="YZ0-b7-T1r" id="byg-95-glI"/>
+                        <outlet property="publisherField" destination="k4f-i1-uu3" id="zTt-BN-0oc"/>
+                        <outlet property="submitButton" destination="tHu-dL-8eU" id="IDO-cZ-exT"/>
+                        <outlet property="titleField" destination="3hO-6f-Lot" id="gXJ-cl-FmB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sWF-Ya-37Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-287" y="903"/>
+            <point key="canvasLocation" x="-287" y="935"/>
         </scene>
     </scenes>
 </document>

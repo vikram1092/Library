@@ -12,7 +12,7 @@ import Foundation
 class LibraryManager {
     
     static let REFRESH_NOTIFICATION = Notification.Name("LibraryManagerRefreshed")
-    let libraryUrl = "https://ivy-ios-challenge.herokuapp.com/"
+    private let libraryUrl = "https://ivy-ios-challenge.herokuapp.com/"
     var books: [Book] = []
     
     func numberOfSections() -> Int {
