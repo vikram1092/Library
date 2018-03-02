@@ -12,7 +12,7 @@ class BookTableController: UITableViewController {
 
     static let TABLE_TO_DETAIL_SEGUE = "BookTableToBookDetailSegue"
     static let TABLE_TO_ADD_BOOK_SEGUE = "BookTableToAddBookSegue"
-    let dataManager = LibraryManager()
+    let dataManager = LibraryManager.shared
     var selectedBook: Book? = nil
     
     override func viewDidLoad() {

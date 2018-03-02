@@ -11,6 +11,7 @@ import UIKit
 
 class AddBookController: UIViewController {
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var authorField: UITextField!
     @IBOutlet weak var publisherField: UITextField!
@@ -22,8 +23,44 @@ class AddBookController: UIViewController {
         
         submitButton.layer.cornerRadius = CGFloat(8)
         submitButton.clipsToBounds = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissSelf), name: LibraryManager.BOOK_ADDED_NOTIFICATION, object: nil)
     }
     
     @IBAction func onSubmit(_ sender: Any) {
+        
+        guard let title = titleField.text, let author = authorField.text else {
+            //Show error here
+            return
+        }
+        let publisher = publisherField.text
+        let categories = categoriesField.text
+        
+        let book = Book()
+        book.title = title
+        book.author = author
+        book.publisher = publisher
+        book.categories = categories
+        LibraryManager.shared.addBookToLibrary(book: book)
+    }
+    
+    @IBAction func onDone() {
+        
+        guard titleField.text == nil || titleField.text == "",
+            authorField.text == nil || authorField.text == "",
+            publisherField.text == nil || publisherField.text == "",
+            categoriesField.text == nil || categoriesField.text == "" else {
+            //Show error here
+            return
+        }
+        
+        dismissSelf()
+    }
+    
+    @objc func dismissSelf() {
+        
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
