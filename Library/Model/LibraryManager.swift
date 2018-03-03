@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 class LibraryManager {
     
@@ -43,8 +43,16 @@ class LibraryManager {
         let task = session.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
                 print(error as Any)
+                self.showError(title: "Error Getting Books", message: "Please try again")
+                return
             }
-            else if let data = data {
+            else if let response = response as? HTTPURLResponse, response.statusCode / 100 != 2 {
+                print("Got response \(response.statusCode) from server")
+                self.showError(title: "Error Getting Books", message: "Please try again")
+                return
+            }
+            
+            if let data = data {
                 do {
                     //Convert data into JSON dictionary
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
@@ -90,12 +98,13 @@ class LibraryManager {
             let task = session.uploadTask(with: urlRequest, from: data) { (data, response, error) in
                 if error != nil {
                     print(error as Any)
+                    self.showError(title: "Error Adding Book", message: "Please try again")
+                    return
                 }
-                else if let response = response as? HTTPURLResponse {
-                    print("response received \(response.statusCode)")
-                    if response.statusCode / 100 != 2 {
-                        
-                    }
+                else if let response = response as? HTTPURLResponse, response.statusCode / 100 != 2 {
+                    print("Got response \(response.statusCode) from server")
+                    self.showError(title: "Error Adding Book", message: "Please try again")
+                    return
                 }
                 
                 //Notify any receivers that book has been added
@@ -130,12 +139,13 @@ class LibraryManager {
             let task = session.dataTask(with: urlRequest) { (data, response, error) in
                 if error != nil {
                     print(error as Any)
+                    self.showError(title: "Error Updating Book", message: "Please try again")
+                    return
                 }
-                else if let response = response as? HTTPURLResponse {
-                    print("response received \(response.statusCode)")
-                    if response.statusCode / 100 != 2 {
-                        
-                    }
+                else if let response = response as? HTTPURLResponse, response.statusCode / 100 != 2 {
+                    print("Got response \(response.statusCode) from server")
+                    self.showError(title: "Error Updating Book", message: "Please try again")
+                    return
                 }
                 
                 guard let data = data else { return }
@@ -172,12 +182,13 @@ class LibraryManager {
         let task = session.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
                 print(error as Any)
+                self.showError(title: "Error Deleting Book", message: "Please try again")
+                return
             }
-            else if let response = response as? HTTPURLResponse {
-                print("response received \(response.statusCode)")
-                if response.statusCode / 100 != 2 {
-                    
-                }
+            else if let response = response as? HTTPURLResponse, response.statusCode / 100 != 2 {
+                print("Got response \(response.statusCode) from server")
+                self.showError(title: "Error Deleting Book", message: "Please try again")
+                return
             }
             
             //Notify any receivers that book has finished being deleted
@@ -202,16 +213,17 @@ class LibraryManager {
         let task = session.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
                 print(error as Any)
+                self.showError(title: "Error Deleting Books", message: "Please try again")
+                return
             }
-            else if let response = response as? HTTPURLResponse {
-                print("response received \(response.statusCode)")
-                if response.statusCode / 100 != 2 {
-                    
-                }
-                
-                //Delete all books locally
-                self.books = []
+            else if let response = response as? HTTPURLResponse, response.statusCode / 100 != 2 {
+                print("Got response \(response.statusCode) from server")
+                self.showError(title: "Error Deleting Books", message: "Please try again")
+                return
             }
+            
+            //Delete all books locally
+            self.books = []
             
             //Notify any receivers that data has finished being deleted
             NotificationCenter.default.post(name: LibraryManager.REFRESH_NOTIFICATION, object: nil)
@@ -247,6 +259,7 @@ class LibraryManager {
         dictionary.setValue(book.title, forKey: Book.TITLE_DICT_KEY)
         dictionary.setValue(book.author, forKey: Book.AUTHOR_DICT_KEY)
         dictionary.setValue(book.publisher, forKey: Book.PUBLISHER_DICT_KEY)
+        dictionary.setValue(book.categories, forKey: Book.CATEGORIES_DICT_KEY)
         dictionary.setValue(book.lastCheckOutBy, forKey: Book.LAST_CO_BY_DICT_KEY)
         dictionary.setValue(dateToString(date: book.lastCheckOut), forKey: Book.LAST_CO_DICT_KEY)
         
@@ -266,5 +279,13 @@ class LibraryManager {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
         return dateFormatter.string(from: date)
+    }
+    
+    func showError(title: String?, message: String?) {
+        
+        DispatchQueue.main.async {
+            let app = UIApplication.shared.delegate as? AppDelegate
+            app?.showError(title: title, message: message)
+        }
     }
 }

@@ -46,6 +46,8 @@ class BookDetailController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateValuesForBook), name: LibraryManager.BOOK_UPDATED_NOTIFICATION, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dismissSelf), name: LibraryManager.BOOK_DELETED_NOTIFICATION, object: nil)
+        
+        editButton.isHidden = !AppDelegate.showEditOptions
     }
         
     @objc func updateValuesForBook(notification: Notification) {
