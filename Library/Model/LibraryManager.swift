@@ -15,6 +15,8 @@ class LibraryManager {
     
     static let REFRESH_NOTIFICATION = Notification.Name("LibraryManagerRefreshed")
     static let BOOK_ADDED_NOTIFICATION = Notification.Name("LibraryManagerRefreshed")
+    static let BOOK_UPDATED_NOTIFICATION = Notification.Name("LibraryManagerRefreshed")
+    static let BOOK_DELETED_NOTIFICATION = Notification.Name("LibraryManagerRefreshed")
     private let libraryUrl = "https://ivy-ios-challenge.herokuapp.com/"
     var books: [Book] = []
     
@@ -91,6 +93,9 @@ class LibraryManager {
                 }
                 else if let response = response as? HTTPURLResponse {
                     print("response received \(response.statusCode)")
+                    if response.statusCode / 100 != 2 {
+                        
+                    }
                 }
                 
                 //Notify any receivers that data has finished loading
@@ -105,10 +110,88 @@ class LibraryManager {
         }
     }
     
+    func updateBook(id: Int, dictionary: NSDictionary) {
+        
+        do {
+            //Get payload
+            print(dictionary)
+            let objData = try JSONSerialization.data(withJSONObject: dictionary, options: [])
+            
+            //Send URL request to library URL to add book to library
+            let urlString = libraryUrl + "books/" + String(describing: id)
+            guard let url = URL(string: urlString) else { return }
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "PUT"
+            urlRequest.httpBody = objData
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+            let session = URLSession.shared
+            let task = session.dataTask(with: urlRequest) { (data, response, error) in
+                if error != nil {
+                    print(error as Any)
+                }
+                else if let response = response as? HTTPURLResponse {
+                    print("response received \(response.statusCode)")
+                    if response.statusCode / 100 != 2 {
+                        
+                    }
+                }
+                
+                guard let data = data else { return }
+                do {
+                    let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+                    //Notify any receivers that data has finished loading
+                    NotificationCenter.default.post(name: LibraryManager.BOOK_UPDATED_NOTIFICATION, object: jsonObject)
+                }
+                catch let error as NSError {
+                    //Show error here
+                    print(error as Any)
+                }
+            }
+            
+            task.resume()
+        }
+        catch let error as NSError {
+            //Show error here
+            print(error as Any)
+        }
+    }
+    
+    func deleteBook(id: Int) {
+    
+        //Send URL request to library URL to add book to library
+        let urlString = libraryUrl + "book/" + String(describing: id)
+        guard let url = URL(string: urlString) else { return }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "DELETE"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest) { (data, response, error) in
+            if error != nil {
+                print(error as Any)
+            }
+            else if let response = response as? HTTPURLResponse {
+                print("response received \(response.statusCode)")
+                if response.statusCode / 100 != 2 {
+                    
+                }
+            }
+            
+            //Notify any receivers that data has finished loading
+            NotificationCenter.default.post(name: LibraryManager.BOOK_DELETED_NOTIFICATION, object: nil)
+        }
+        
+        task.resume()
+    }
+    
     func convertDictToBook(dict: NSDictionary) -> Book {
         
         //Create Book object
         let book = Book()
+        book.id = dict[Book.ID_DICT_KEY] as? Int
         book.title = dict[Book.TITLE_DICT_KEY] as? String
         book.author = dict[Book.AUTHOR_DICT_KEY] as? String
         book.publisher = dict[Book.PUBLISHER_DICT_KEY] as? String
@@ -127,6 +210,7 @@ class LibraryManager {
         
         //Get NSDictionary from Book object
         let dictionary = NSMutableDictionary()
+        dictionary.setValue(book.id, forKey: Book.ID_DICT_KEY)
         dictionary.setValue(book.title, forKey: Book.TITLE_DICT_KEY)
         dictionary.setValue(book.author, forKey: Book.AUTHOR_DICT_KEY)
         dictionary.setValue(book.publisher, forKey: Book.PUBLISHER_DICT_KEY)
