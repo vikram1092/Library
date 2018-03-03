@@ -98,7 +98,7 @@ class LibraryManager {
                     }
                 }
                 
-                //Notify any receivers that data has finished loading
+                //Notify any receivers that book has been added
                 NotificationCenter.default.post(name: LibraryManager.BOOK_ADDED_NOTIFICATION, object: nil)
             }
             
@@ -117,7 +117,7 @@ class LibraryManager {
             print(dictionary)
             let objData = try JSONSerialization.data(withJSONObject: dictionary, options: [])
             
-            //Send URL request to library URL to add book to library
+            //Send URL request to library URL to update book in library
             let urlString = libraryUrl + "books/" + String(describing: id)
             guard let url = URL(string: urlString) else { return }
             var urlRequest = URLRequest(url: url)
@@ -141,7 +141,7 @@ class LibraryManager {
                 guard let data = data else { return }
                 do {
                     let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
-                    //Notify any receivers that data has finished loading
+                    //Notify any receivers that book has finished updating
                     NotificationCenter.default.post(name: LibraryManager.BOOK_UPDATED_NOTIFICATION, object: jsonObject)
                 }
                 catch let error as NSError {
@@ -160,7 +160,7 @@ class LibraryManager {
     
     func deleteBook(id: Int) {
     
-        //Send URL request to library URL to add book to library
+        //Send URL request to library URL to delete book from library
         let urlString = libraryUrl + "books/" + String(describing: id)
         guard let url = URL(string: urlString) else { return }
         var urlRequest = URLRequest(url: url)
@@ -180,8 +180,41 @@ class LibraryManager {
                 }
             }
             
-            //Notify any receivers that data has finished loading
+            //Notify any receivers that book has finished being deleted
             NotificationCenter.default.post(name: LibraryManager.BOOK_DELETED_NOTIFICATION, object: nil)
+        }
+        
+        task.resume()
+    }
+    
+    
+    func deleteAllBooks() {
+        
+        //Send URL request to delete
+        let urlString = libraryUrl + "clean"
+        guard let url = URL(string: urlString) else { return }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "DELETE"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest) { (data, response, error) in
+            if error != nil {
+                print(error as Any)
+            }
+            else if let response = response as? HTTPURLResponse {
+                print("response received \(response.statusCode)")
+                if response.statusCode / 100 != 2 {
+                    
+                }
+                
+                //Delete all books locally
+                self.books = []
+            }
+            
+            //Notify any receivers that data has finished being deleted
+            NotificationCenter.default.post(name: LibraryManager.REFRESH_NOTIFICATION, object: nil)
         }
         
         task.resume()

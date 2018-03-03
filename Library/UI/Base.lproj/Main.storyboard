@@ -108,6 +108,11 @@
                                 <action selector="onAddBook:" destination="lWf-GW-6rs" id="5W7-3M-2iT"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="more" id="pz2-cZ-Ptr">
+                            <connections>
+                                <action selector="onMore:" destination="lWf-GW-6rs" id="Z5M-u0-XG2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="mo1-A1-eWj" kind="show" identifier="BookTableToBookDetailSegue" id="3Yp-j2-1kX"/>
@@ -500,4 +505,7 @@
             <point key="canvasLocation" x="-287.19999999999999" y="934.18290854572717"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="more" width="28" height="28"/>
+    </resources>
 </document>

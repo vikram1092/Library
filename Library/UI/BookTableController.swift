@@ -40,6 +40,26 @@ class BookTableController: UITableViewController {
         performSegue(withIdentifier: BookTableController.TABLE_TO_ADD_BOOK_SEGUE, sender: nil)
     }
     
+    @IBAction func onMore(_ sender: Any) {
+       
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let deleteAllOption = UIAlertAction(title: "Delete All Books", style: .destructive) { (action) in
+            
+            let confirmAlert = UIAlertController(title: "Are you sure?", message: "This action cannot be undone.", preferredStyle: .alert)
+            let confirmDeleteOption = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+                
+                self.dataManager.deleteAllBooks()
+            }
+            let cancelConfirmOption = UIAlertAction(title: "Cancel", style: .cancel) { (action) in }
+            confirmAlert.addAction(confirmDeleteOption)
+            confirmAlert.addAction(cancelConfirmOption)
+            self.present(confirmAlert, animated: true, completion: nil)
+        }
+        let cancelOption = UIAlertAction(title: "Cancel", style: .cancel) { (action) in }
+        alert.addAction(deleteAllOption)
+        alert.addAction(cancelOption)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return dataManager.numberOfSections()
