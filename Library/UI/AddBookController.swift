@@ -29,8 +29,13 @@ class AddBookController: UIViewController {
     
     @IBAction func onSubmit(_ sender: Any) {
         
-        guard let title = titleField.text, let author = authorField.text else {
-            //Show error here
+        guard let title = titleField.text, let author = authorField.text, title != "", author != "" else {
+            //Show error
+            let alert = UIAlertController(title: "Incomplete Information", message: "The book needs its title and author.", preferredStyle: .alert)
+            let confirmAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+            
+            alert.addAction(confirmAction)
+            self.present(alert, animated: true, completion: nil)
             return
         }
         let publisher = publisherField.text
@@ -50,7 +55,18 @@ class AddBookController: UIViewController {
             authorField.text == nil || authorField.text == "",
             publisherField.text == nil || publisherField.text == "",
             categoriesField.text == nil || categoriesField.text == "" else {
-            //Show error here
+
+            //Show error
+            let alert = UIAlertController(title: "Are you sure?", message: "Your progress will be lost.", preferredStyle: .alert)
+            let confirmAction = UIAlertAction(title: "Leave", style: .destructive, handler: { (action) in
+                self.dismissSelf()
+            })
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alert.addAction(confirmAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
             return
         }
         

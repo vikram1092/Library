@@ -126,6 +126,7 @@ class BookDetailController: UIViewController {
         alert.addTextField { (textField) in
             textField.text = value
             textField.placeholder = attribute
+            textField.autocapitalizationType = .words
         }
         let updateOption = UIAlertAction(title: "Update", style: .default) { (action) in
             

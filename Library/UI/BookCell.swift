@@ -22,8 +22,4 @@ class BookCell: UITableViewCell {
         paddingView.layer.cornerRadius = CGFloat(8)
         paddingView.clipsToBounds = true
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
 }
