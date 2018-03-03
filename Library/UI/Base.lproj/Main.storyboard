@@ -114,6 +114,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="wIl-b0-gcm">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <segue destination="mo1-A1-eWj" kind="show" identifier="BookTableToBookDetailSegue" id="3Yp-j2-1kX"/>
                         <segue destination="dp6-jX-g4d" kind="presentation" identifier="BookTableToAddBookSegue" id="Pag-Q2-4Ob"/>
@@ -277,10 +280,27 @@
                                     <constraint firstAttribute="width" constant="5" id="SA8-1n-7yh"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRY-j1-dWI">
+                                <rect key="frame" x="105" y="542" width="165" height="50"/>
+                                <color key="backgroundColor" red="0.87058823529999996" green="0.2666666667" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0wM-n9-AhE"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Rws-BS-tRi"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="kSt-6x-W2W"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onDelete:" destination="mo1-A1-eWj" eventType="touchUpInside" id="OM1-Nw-VW1"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8l2-wF-mLs">
-                                <rect key="frame" x="16" y="462" width="163.5" height="50"/>
+                                <rect key="frame" x="105" y="462" width="165" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="8Yb-di-K1o"/>
                                     <constraint firstAttribute="height" constant="50" id="cH4-oj-bOa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -291,41 +311,24 @@
                                     <action selector="onEdit:" destination="mo1-A1-eWj" eventType="touchUpInside" id="D18-Wr-4OX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRY-j1-dWI">
-                                <rect key="frame" x="195.5" y="462" width="163.5" height="50"/>
-                                <color key="backgroundColor" red="0.87058823529999996" green="0.2666666667" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="0wM-n9-AhE"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Rws-BS-tRi"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <state key="normal" title="Delete">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onDelete:" destination="mo1-A1-eWj" eventType="touchUpInside" id="OM1-Nw-VW1"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="DeE-Fy-yrr" firstAttribute="top" secondItem="5Au-79-SmV" secondAttribute="top" constant="16" id="1dH-0E-7ID"/>
                             <constraint firstItem="5Au-79-SmV" firstAttribute="trailing" secondItem="k32-5I-tFG" secondAttribute="trailing" constant="16" id="8Ev-c2-FqH"/>
-                            <constraint firstItem="5Au-79-SmV" firstAttribute="trailing" secondItem="TRY-j1-dWI" secondAttribute="trailing" constant="16" id="F7D-cO-Ha2"/>
+                            <constraint firstItem="TRY-j1-dWI" firstAttribute="top" secondItem="8l2-wF-mLs" secondAttribute="bottom" constant="30" id="9Hz-Rl-DEb"/>
                             <constraint firstItem="iOV-zV-npP" firstAttribute="leading" secondItem="5Au-79-SmV" secondAttribute="leading" constant="16" id="IgX-ta-U0P"/>
                             <constraint firstItem="iOV-zV-npP" firstAttribute="top" secondItem="5Au-79-SmV" secondAttribute="top" constant="16" id="Lou-eX-9z8"/>
-                            <constraint firstItem="TRY-j1-dWI" firstAttribute="top" secondItem="k32-5I-tFG" secondAttribute="bottom" constant="25" id="NDG-uU-qUO"/>
-                            <constraint firstItem="TRY-j1-dWI" firstAttribute="width" secondItem="8l2-wF-mLs" secondAttribute="width" id="NXh-9r-u7a"/>
                             <constraint firstItem="iK0-wn-Ggg" firstAttribute="centerX" secondItem="PW1-Wr-FU3" secondAttribute="centerX" id="Ooq-Cw-3W7"/>
                             <constraint firstItem="iK0-wn-Ggg" firstAttribute="top" secondItem="5Au-79-SmV" secondAttribute="top" constant="16" id="PmR-xd-etT"/>
                             <constraint firstItem="k32-5I-tFG" firstAttribute="top" secondItem="DeE-Fy-yrr" secondAttribute="bottom" constant="25" id="Qhj-9n-j66"/>
-                            <constraint firstItem="TRY-j1-dWI" firstAttribute="leading" secondItem="8l2-wF-mLs" secondAttribute="trailing" constant="16" id="TzC-lL-MWZ"/>
+                            <constraint firstItem="8l2-wF-mLs" firstAttribute="centerX" secondItem="PW1-Wr-FU3" secondAttribute="centerX" id="WEu-8k-7Xk"/>
                             <constraint firstItem="5Au-79-SmV" firstAttribute="trailing" secondItem="DeE-Fy-yrr" secondAttribute="trailing" constant="16" id="c7h-JH-Ahy"/>
                             <constraint firstItem="DeE-Fy-yrr" firstAttribute="width" secondItem="iOV-zV-npP" secondAttribute="width" id="eow-vL-G2p"/>
                             <constraint firstItem="DeE-Fy-yrr" firstAttribute="leading" secondItem="iOV-zV-npP" secondAttribute="trailing" id="fwU-9E-TKL"/>
                             <constraint firstItem="k32-5I-tFG" firstAttribute="leading" secondItem="5Au-79-SmV" secondAttribute="leading" constant="16" id="j9M-J7-iRi"/>
                             <constraint firstItem="8l2-wF-mLs" firstAttribute="top" secondItem="k32-5I-tFG" secondAttribute="bottom" constant="25" id="oYh-C6-d2w"/>
-                            <constraint firstItem="8l2-wF-mLs" firstAttribute="leading" secondItem="5Au-79-SmV" secondAttribute="leading" constant="16" id="oyZ-by-5Dj"/>
+                            <constraint firstItem="TRY-j1-dWI" firstAttribute="centerX" secondItem="PW1-Wr-FU3" secondAttribute="centerX" id="prw-qx-4n8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Au-79-SmV"/>
                     </view>

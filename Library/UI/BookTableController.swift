@@ -18,6 +18,9 @@ class BookTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        refreshControl?.backgroundColor = tableView.backgroundColor
+        refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(refreshTable), name: LibraryManager.REFRESH_NOTIFICATION, object: nil)
     }
     
@@ -26,12 +29,13 @@ class BookTableController: UITableViewController {
         refreshData()
     }
     
-    func refreshData() {
+    @objc func refreshData() {
         dataManager.refreshData()
     }
     
     @objc func refreshTable() {
         DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
             self.tableView.reloadData()
         }
     }
