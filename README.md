@@ -63,7 +63,7 @@ hidden option below)
 A user can use this view to add a new book to the library. Title and Author are required, while the rest of the fields are not.
 
 
-## Considerations
+# Considerations
 
 1. I used a light yellow color scheme because it seemed more natural when thinking about reading/writing. Perhaps this is 
 an influence of Apple's Notes app.
