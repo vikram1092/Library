@@ -161,7 +161,7 @@ class LibraryManager {
     func deleteBook(id: Int) {
     
         //Send URL request to library URL to add book to library
-        let urlString = libraryUrl + "book/" + String(describing: id)
+        let urlString = libraryUrl + "books/" + String(describing: id)
         guard let url = URL(string: urlString) else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "DELETE"

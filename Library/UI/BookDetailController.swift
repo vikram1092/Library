@@ -81,7 +81,7 @@ class BookDetailController: UIViewController {
     @objc func dismissSelf() {
         
         DispatchQueue.main.async {
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -148,5 +148,12 @@ class BookDetailController: UIViewController {
         
         guard let id = book?.id else { return }
         LibraryManager.shared.deleteBook(id: id)
+    }
+    
+    @IBAction func onShare(_ sender: UIButton) {
+        
+        let activityController = UIActivityViewController(activityItems: ["Check out \(book?.title ?? "this book") by \(book?.author ?? "a great author") on my app, Library!"], applicationActivities: nil)
+        activityController.popoverPresentationController?.sourceView = sender
+        self.present(activityController, animated: true, completion: nil)
     }
 }

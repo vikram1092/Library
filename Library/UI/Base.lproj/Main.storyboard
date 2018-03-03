@@ -326,7 +326,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="caV-Np-8iN">
                         <barButtonItem key="backBarButtonItem" title=" " id="A2H-FR-E6R"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="ywa-aZ-zUe"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="ywa-aZ-zUe">
+                            <connections>
+                                <action selector="onShare:" destination="mo1-A1-eWj" id="mp8-F3-8fo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="authorLabel" destination="cS9-1o-k5c" id="R7j-4O-Sl9"/>
